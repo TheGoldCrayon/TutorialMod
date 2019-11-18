@@ -1,12 +1,17 @@
 package com.github.thegoldcrayon.tutorialmod;
 
 import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
+import com.github.thegoldcrayon.tutorialmod.block.TutorialGeneratorBlock;
+import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
+import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,6 +21,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.annotation.Nonnull;
 
 @EventBusSubscriber(modid = TutorialMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
@@ -30,12 +37,11 @@ public class ModEventSubscriber
     {
 
         event.getRegistry().registerAll(
-
                 setup(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f)), "tutorial_block"),
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue"),
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_2"),
-                setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_3")
-
+                setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_3"),
+                setup(new TutorialGeneratorBlock(), "tutorial_generator")
         );
 
         LOGGER.debug("Registered Blocks");
@@ -51,9 +57,7 @@ public class ModEventSubscriber
         final IForgeRegistry<Item> registry = event.getRegistry();
 
         registry.registerAll(
-
                 setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item")
-
         );
 
         //Go through entire registry as to include any potential Registry Overrides
@@ -88,6 +92,34 @@ public class ModEventSubscriber
         }
 
         LOGGER.debug("Registered Items");
+
+    }
+
+    //This will be called by Forge when it's time to register TileEntityTypes
+    //This will always be called after Blocks and Items
+    @SubscribeEvent
+    public static void onRegisterTileEntityTypes(@Nonnull final RegistryEvent.Register<TileEntityType<?>> event)
+    {
+
+        event.getRegistry().registerAll(
+            setup(TileEntityType.Builder.create(TutorialGeneratorTileEntity::new, ModBlocks.TUTORIAL_GENERATOR).build(null), "tutorial_generator")
+        );
+
+        LOGGER.debug("Registered TileEntityTypes");
+
+    }
+
+    //This will be called by Forge when it's time to register ContainerTypes
+    //This will always be called after Blocks and Items
+    @SubscribeEvent
+    public static void onRegisterContainerTypes(@Nonnull final RegistryEvent.Register<ContainerType<?>> event)
+    {
+
+        event.getRegistry().registerAll(
+
+        );
+
+        LOGGER.debug("Registered ContainerTypes");
 
     }
 

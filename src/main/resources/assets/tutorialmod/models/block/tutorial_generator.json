@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures":
+  {
+    "particle": "tutorialmod:block/tutorial_generator",
+    "down": "tutorialmod:block/tutorial_generator",
+    "up": "tutorialmod:block/tutorial_generator_top",
+    "east": "tutorialmod:block/tutorial_generator",
+    "west": "tutorialmod:block/tutorial_generator",
+    "north": "tutorialmod:block/tutorial_generator_front",
+    "south": "tutorialmod:block/tutorial_generator"
+  }
+}

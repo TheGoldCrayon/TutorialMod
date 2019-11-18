@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tutorialmod:tutorial_block"
+  },
+  "result": "tutorialmod:creator_statue",
+  "experience": 0.05,
+  "cookingtime": 200
+}
