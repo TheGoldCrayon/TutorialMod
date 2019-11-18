@@ -2,6 +2,7 @@ package com.github.thegoldcrayon.tutorialmod;
 
 import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
 import com.github.thegoldcrayon.tutorialmod.block.TutorialGeneratorBlock;
+import com.github.thegoldcrayon.tutorialmod.container.TutorialGeneratorContainer;
 import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
@@ -13,6 +14,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -116,7 +118,7 @@ public class ModEventSubscriber
     {
 
         event.getRegistry().registerAll(
-
+            setup(IForgeContainerType.create(TutorialGeneratorContainer::new), "tutorial_generator")
         );
 
         LOGGER.debug("Registered ContainerTypes");

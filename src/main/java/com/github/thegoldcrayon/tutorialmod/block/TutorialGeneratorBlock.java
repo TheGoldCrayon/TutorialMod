@@ -2,19 +2,25 @@ package com.github.thegoldcrayon.tutorialmod.block;
 
 
 import com.github.thegoldcrayon.tutorialmod.init.ModTileEntityTypes;
+import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -71,6 +77,27 @@ public class TutorialGeneratorBlock extends Block
     {
 
         builder.add(BlockStateProperties.FACING);
+
+    }
+
+    @Override
+    public boolean onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit)
+    {
+
+        if(!worldIn.isRemote)
+        {
+
+            final TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof TutorialGeneratorTileEntity)
+            {
+
+                NetworkHooks.openGui(((ServerPlayerEntity) player), ((TutorialGeneratorTileEntity) tileEntity), pos);
+
+            }
+
+        }
+
+        return true;
 
     }
 
