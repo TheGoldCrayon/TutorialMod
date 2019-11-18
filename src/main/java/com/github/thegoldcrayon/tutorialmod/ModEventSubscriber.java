@@ -1,5 +1,6 @@
 package com.github.thegoldcrayon.tutorialmod;
 
+import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
@@ -31,8 +32,9 @@ public class ModEventSubscriber
         event.getRegistry().registerAll(
 
                 setup(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f)), "tutorial_block"),
-                setup(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue"),
-                setup(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_2")
+                setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue"),
+                setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_2"),
+                setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_3")
 
         );
 

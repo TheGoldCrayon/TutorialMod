@@ -2,6 +2,8 @@
 
   "item.tutorialmod.tutorial_item": "Tutorial Item",
   "itemGroup.tutorialmod": "Tutorial Mod",
-  "block.tutorialmod.tutorial_block": "Tutorial Block"
-
+  "block.tutorialmod.tutorial_block": "Tutorial Block",
+  "block.tutorialmod.creator_statue": "Creator Statue",
+  "block.tutorialmod.creator_statue_2": "Creator Statue 2",
+  "block.tutorialmod.creator_statue_3": "Creator Statue 3"
 }

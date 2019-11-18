@@ -1,0 +1,9 @@
+{
+  "variants":
+  {
+    "facing=north": {"model": "tutorialmod:block/creator_statue_3"},
+    "facing=south": {"model": "tutorialmod:block/creator_statue_3", "y":  180},
+    "facing=east": {"model": "tutorialmod:block/creator_statue_3", "y":  90},
+    "facing=west": {"model": "tutorialmod:block/creator_statue_3", "y":  270}
+  }
+}
