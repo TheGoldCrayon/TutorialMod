@@ -23,7 +23,8 @@ public class TutorialGeneratorScreen extends ContainerScreen<TutorialGeneratorCo
     public void render(final int mouseX, final int mouseY, final float partialTicks)
     {
 
-
+        this.renderBackground();
+        super.render(mouseX, mouseY, partialTicks);
 
     }
 
