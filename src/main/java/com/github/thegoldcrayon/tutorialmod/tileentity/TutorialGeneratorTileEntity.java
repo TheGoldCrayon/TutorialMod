@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 public class TutorialGeneratorTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
 
-    private static final String INVENTORY_TAG = "inventory";
+    //private static final String INVENTORY_TAG = "inventory";
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
     public TutorialGeneratorTileEntity()
