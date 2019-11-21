@@ -1,8 +1,10 @@
 package com.github.thegoldcrayon.tutorialmod.container;
 
+import com.github.thegoldcrayon.tutorialmod.energy.SettableEnergyStorage;
 import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
 import com.github.thegoldcrayon.tutorialmod.init.ModContainerTypes;
 import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ReportedException;
@@ -15,8 +17,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
@@ -40,6 +46,27 @@ public class TutorialGeneratorContainer extends Container
 
         addSlots(tileEntity, playerInventory);
 
+        trackInt(new IntReferenceHolder()
+        {
+
+            @Override
+            public int get()
+            {
+
+                return getEnergy();
+
+            }
+
+            @Override
+            public void set(int value)
+            {
+
+                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(h -> ((SettableEnergyStorage) h).setEnergy(value));
+
+            }
+
+        });
+
     }
 
     //Logical client-side constructor
@@ -53,6 +80,34 @@ public class TutorialGeneratorContainer extends Container
         this.tileEntity = tileEntity;
 
         addSlots(tileEntity, playerInventory);
+
+        trackInt(new IntReferenceHolder()
+        {
+
+            @Override
+            public int get()
+            {
+
+                return getEnergy();
+
+            }
+
+            @Override
+            public void set(int value)
+            {
+
+                tileEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(h -> ((SettableEnergyStorage) h).setEnergy(value));
+
+            }
+
+        });
+
+    }
+
+    public int getEnergy()
+    {
+
+        return tileEntity.getCapability(CapabilityEnergy.ENERGY).map(IEnergyStorage::getEnergyStored).orElse(0);
 
     }
 
@@ -89,7 +144,10 @@ public class TutorialGeneratorContainer extends Container
     {
 
         //TutorialGeneratorTileEntity's Inventory slot
-        this.addSlot(new SlotItemHandler(tileEntity.inventory, 0, 80, 20));
+        //this.addSlot(new SlotItemHandler(tileEntity.inventory, 0, 80, 20));
+        tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+            addSlot(new SlotItemHandler(h, 0, 80, 20));
+        });
 
         final int playerInventoryStartX = 8;
         final int playerInventoryStartY = 51;
@@ -181,6 +239,36 @@ public class TutorialGeneratorContainer extends Container
     {
 
         return isWithinUsableDistance(canInteractWithCallable, player, ModBlocks.TUTORIAL_GENERATOR);
+
+    }
+
+    private static class EnergyReferenceHolder extends IntReferenceHolder
+    {
+
+        private final SettableEnergyStorage energy;
+
+        public EnergyReferenceHolder(final SettableEnergyStorage energy)
+        {
+
+            this.energy = energy;
+
+        }
+
+        @Override
+        public int get()
+        {
+
+            return energy.getEnergyStored();
+
+        }
+
+        @Override
+        public void set(final int newValue)
+        {
+
+            energy.setEnergy(newValue);
+
+        }
 
     }
 
