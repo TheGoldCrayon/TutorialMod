@@ -2,6 +2,8 @@ package com.github.thegoldcrayon.tutorialmod;
 
 import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
 import com.github.thegoldcrayon.tutorialmod.block.TutorialGeneratorBlock;
+import com.github.thegoldcrayon.tutorialmod.config.ConfigHelper;
+import com.github.thegoldcrayon.tutorialmod.config.ConfigHolder;
 import com.github.thegoldcrayon.tutorialmod.container.TutorialGeneratorContainer;
 import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
@@ -18,6 +20,7 @@ import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -97,8 +100,8 @@ public class ModEventSubscriber
 
     }
 
-    //This will be called by Forge when it's time to register TileEntityTypes
-    //This will always be called after Blocks and Items
+    //This will be called by Forge when it's time to register TileEntityTypes.
+    //This will always be called after Blocks and Items.
     @SubscribeEvent
     public static void onRegisterTileEntityTypes(@Nonnull final RegistryEvent.Register<TileEntityType<?>> event)
     {
@@ -111,8 +114,8 @@ public class ModEventSubscriber
 
     }
 
-    //This will be called by Forge when it's time to register ContainerTypes
-    //This will always be called after Blocks and Items
+    //This will be called by Forge when it's time to register ContainerTypes.
+    //This will always be called after Blocks and Items.
     @SubscribeEvent
     public static void onRegisterContainerTypes(@Nonnull final RegistryEvent.Register<ContainerType<?>> event)
     {
@@ -122,6 +125,34 @@ public class ModEventSubscriber
         );
 
         LOGGER.debug("Registered ContainerTypes");
+
+    }
+
+    //This will be called by forge when a config changes.
+    @SubscribeEvent
+    public static void onModConfigEvent(final ModConfig.ModConfigEvent event)
+    {
+
+        final ModConfig config = event.getConfig();
+
+        //Rebake configs when they change
+        if(config.getSpec() == ConfigHolder.CLIENT_SPEC)
+        {
+
+            ConfigHelper.bakeClient(config);
+            LOGGER.debug("Baked Client config");
+
+        }
+
+        if(config.getSpec() == ConfigHolder.SERVER_SPEC)
+        {
+
+            ConfigHelper.bakeServer(config);
+            LOGGER.debug("Baked Server config");
+
+        }
+
+        LOGGER.debug("Baked configs");
 
     }
 
