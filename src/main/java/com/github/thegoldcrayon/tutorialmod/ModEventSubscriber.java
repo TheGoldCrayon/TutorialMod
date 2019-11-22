@@ -144,7 +144,7 @@ public class ModEventSubscriber
 
         }
 
-        if(config.getSpec() == ConfigHolder.SERVER_SPEC)
+        else if(config.getSpec() == ConfigHolder.SERVER_SPEC)
         {
 
             ConfigHelper.bakeServer(config);

@@ -31,6 +31,8 @@ public final class ConfigHelper
         TutorialModConfig.serverStringList = ConfigHolder.SERVER.serverStringList.get();
         TutorialModConfig.serverEnumDyeColor = ConfigHolder.SERVER.serverEnumDyeColor.get();
 
+        TutorialModConfig.serverGeneratorGeneration = ConfigHolder.SERVER.serverGeneratorGeneration.get();
+
     }
 
     //Helper method to set value on a config then save the config
