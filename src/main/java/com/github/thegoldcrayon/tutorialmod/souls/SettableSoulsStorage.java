@@ -13,24 +13,24 @@ public class SettableSoulsStorage extends SoulsStorage implements INBTSerializab
 
     }
 
-    public SettableSoulsStorage(int capacity, int maxInOut)
+    public SettableSoulsStorage(int capacity, int maxTransfer)
     {
 
-        super(capacity, maxInOut);
+        super(capacity, maxTransfer);
 
     }
 
-    public SettableSoulsStorage(int capacity, int maxIn, int maxOut)
+    public SettableSoulsStorage(int capacity, int maxReceive, int maxExtract)
     {
 
-        super(capacity, maxIn, maxOut);
+        super(capacity, maxReceive, maxExtract);
 
     }
 
-    public SettableSoulsStorage(int capacity, int maxIn, int maxOut, int souls)
+    public SettableSoulsStorage(int capacity, int maxReceive, int maxExtract, int souls)
     {
 
-        super(capacity, maxIn, maxOut, souls);
+        super(capacity, maxReceive, maxExtract, souls);
 
     }
 

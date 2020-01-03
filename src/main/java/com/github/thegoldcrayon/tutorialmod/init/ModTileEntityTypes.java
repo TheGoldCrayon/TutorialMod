@@ -9,5 +9,6 @@ public class ModTileEntityTypes
 {
 
     public static final TileEntityType<?> TUTORIAL_GENERATOR = null;
+    public static final TileEntityType<?> SOUL_GEN = null;
 
 }

@@ -14,9 +14,10 @@ final class ServerConfig
     final ForgeConfigSpec.BooleanValue serverBoolean;
     final ForgeConfigSpec.ConfigValue<List<String>> serverStringList;
     final ForgeConfigSpec.ConfigValue<DyeColor> serverEnumDyeColor;
-    final ForgeConfigSpec.IntValue serverGeneratorGeneration;
 
-    ServerConfig(final ForgeConfigSpec.Builder builder) {
+    ServerConfig(final ForgeConfigSpec.Builder builder)
+    {
+
         builder.push("general");
 
         serverBoolean = builder
@@ -34,12 +35,8 @@ final class ServerConfig
                 .translation(TutorialMod.MODID + ".config.serverEnumDyeColor")
                 .defineEnum("serverEnumDyeColor", DyeColor.WHITE);
 
-        serverGeneratorGeneration = builder
-                .comment("How much energy the generator generates per diamond")
-                .translation(TutorialMod.MODID + ".config.serverGeneratorGeneration")
-                .defineInRange("serverGeneratorGeneration", 100, 10, 1000);
-
         builder.pop();
+
     }
 
 }

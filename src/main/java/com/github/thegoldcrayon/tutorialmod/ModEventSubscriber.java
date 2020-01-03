@@ -62,7 +62,8 @@ public class ModEventSubscriber
         final IForgeRegistry<Item> registry = event.getRegistry();
 
         registry.registerAll(
-                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item")
+                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item"),
+                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "soul")
         );
 
         //Go through entire registry as to include any potential Registry Overrides

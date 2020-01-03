@@ -14,6 +14,7 @@ final class ClientConfig
     final ForgeConfigSpec.BooleanValue clientBoolean;
     final ForgeConfigSpec.ConfigValue<List<String>> clientStringList;
     final ForgeConfigSpec.ConfigValue<DyeColor> clientEnumDyeColor;
+    final ForgeConfigSpec.IntValue clientGeneratorGeneration;
 
     ClientConfig(final ForgeConfigSpec.Builder builder)
     {
@@ -34,6 +35,11 @@ final class ClientConfig
                 .comment("An example enum DyeColor in the client config")
                 .translation(TutorialMod.MODID + ".config.clientEnumDyeColor")
                 .defineEnum("clientEnumDyeColor", DyeColor.WHITE);
+
+        clientGeneratorGeneration = builder
+                .comment("How much energy the generator generates per diamond")
+                .translation(TutorialMod.MODID + ".config.clientGeneratorGeneration")
+                .defineInRange("clientGeneratorGeneration", 100, 10, 1000);
 
         builder.pop();
 

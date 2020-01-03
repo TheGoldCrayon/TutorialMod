@@ -1,12 +1,12 @@
 package com.github.thegoldcrayon.tutorialmod.souls;
 
-public class SoulsStorage
+public class SoulsStorage implements ISoulsStorage
 {
 
     protected int souls;
     protected int capacity;
-    protected int maxIn;
-    protected int maxOut;
+    protected int maxReceive;
+    protected int maxExtract;
 
     public SoulsStorage(int capacity)
     {
@@ -22,23 +22,52 @@ public class SoulsStorage
 
     }
 
-    public SoulsStorage(int capacity, int maxIn, int maxOut)
+    public SoulsStorage(int capacity, int maxReceive, int maxExtract)
     {
 
-        this(capacity, maxIn, maxOut, 0);
+        this(capacity, maxReceive, maxExtract, 0);
 
     }
 
-    public SoulsStorage(int capacity, int maxIn, int maxOut, int souls)
+    public SoulsStorage(int capacity, int maxReceive, int maxExtract, int souls)
     {
 
         this.capacity = capacity;
-        this.maxIn = maxIn;
-        this.maxOut = maxOut;
+        this.maxReceive = maxReceive;
+        this.maxExtract = maxExtract;
         this.souls = Math.max(0, Math.min(capacity, souls));
 
     }
 
+    @Override
+    public int receiveSouls(int maxReceive, boolean simulate)
+    {
+
+        if(!canReceive())
+            return 0;
+
+        int soulsReceived = Math.min(capacity - souls, Math.min(this.maxReceive, maxReceive));
+        if(!simulate)
+            souls += soulsReceived;
+        return soulsReceived;
+
+    }
+
+    @Override
+    public int extractSouls(int maxExtract, boolean simulate)
+    {
+
+        if(!canExtract())
+            return 0;
+
+        int soulsExtracted = Math.min(souls, Math.min(this.maxExtract, maxExtract));
+        if(!simulate)
+            souls -= soulsExtracted;
+        return soulsExtracted;
+
+    }
+
+    @Override
     public int getSoulsStored()
     {
 
@@ -46,6 +75,7 @@ public class SoulsStorage
 
     }
 
+    @Override
     public int getMaxSoulsStored()
     {
 
@@ -53,17 +83,19 @@ public class SoulsStorage
 
     }
 
-    public boolean canInput()
+    @Override
+    public boolean canReceive()
     {
 
-        return this.maxIn > 0;
+        return this.maxReceive > 0;
 
     }
 
-    public boolean canOutput()
+    @Override
+    public boolean canExtract()
     {
 
-        return this.maxOut > 0;
+        return this.maxExtract > 0;
 
     }
 

@@ -59,7 +59,7 @@ public class TutorialGeneratorTileEntity extends TileEntity implements ITickable
 
             counter--;
             if(counter <= 0)
-                energy.ifPresent(e -> ((SettableEnergyStorage) e).addEnergy(TutorialModConfig.serverGeneratorGeneration));
+                energy.ifPresent(e -> ((SettableEnergyStorage) e).addEnergy(TutorialModConfig.clientGeneratorGeneration));
             markDirty();
 
         }
@@ -67,7 +67,8 @@ public class TutorialGeneratorTileEntity extends TileEntity implements ITickable
         if(counter <= 0) {
             handler.ifPresent(h -> {
                 ItemStack stack = h.getStackInSlot(0);
-                if (stack.getItem() == Items.DIAMOND) {
+                if (stack.getItem() == Items.DIAMOND)
+                {
 
                     h.extractItem(0, 1, false);
                     counter = 20;

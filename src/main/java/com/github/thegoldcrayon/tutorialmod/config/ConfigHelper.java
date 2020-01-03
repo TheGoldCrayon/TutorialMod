@@ -20,6 +20,8 @@ public final class ConfigHelper
         TutorialModConfig.clientStringList = ConfigHolder.CLIENT.clientStringList.get();
         TutorialModConfig.clientEnumDyeColor = ConfigHolder.CLIENT.clientEnumDyeColor.get();
 
+        TutorialModConfig.clientGeneratorGeneration = ConfigHolder.CLIENT.clientGeneratorGeneration.get();
+
     }
 
     public static void bakeServer(final ModConfig config)
@@ -30,8 +32,6 @@ public final class ConfigHelper
         TutorialModConfig.serverBoolean = ConfigHolder.SERVER.serverBoolean.get();
         TutorialModConfig.serverStringList = ConfigHolder.SERVER.serverStringList.get();
         TutorialModConfig.serverEnumDyeColor = ConfigHolder.SERVER.serverEnumDyeColor.get();
-
-        TutorialModConfig.serverGeneratorGeneration = ConfigHolder.SERVER.serverGeneratorGeneration.get();
 
     }
 

@@ -9,5 +9,6 @@ public class ModItems
 {
 
     public static final Item TUTORIAL_ITEM = null;
+    public static final Item SOUL = null;
 
 }

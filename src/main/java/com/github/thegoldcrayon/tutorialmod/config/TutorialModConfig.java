@@ -14,15 +14,11 @@ public final class TutorialModConfig
     public static List<String> clientStringList;
     public static DyeColor clientEnumDyeColor;
 
-    public static boolean modelTranslucency;
-    public static double modelScale;
+    public static int clientGeneratorGeneration;
 
     // Server
     public static boolean serverBoolean;
     public static List<String> serverStringList;
     public static DyeColor serverEnumDyeColor;
-
-    public static int serverGeneratorGeneration;
-
 
 }
