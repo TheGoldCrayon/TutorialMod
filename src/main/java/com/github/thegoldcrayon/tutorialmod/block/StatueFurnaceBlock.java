@@ -30,7 +30,7 @@ public class StatueFurnaceBlock extends HorizontalBlock
         );
 
     }
-
+/*
     @Override
     public boolean hasTileEntity(final BlockState state)
     {
@@ -70,5 +70,5 @@ public class StatueFurnaceBlock extends HorizontalBlock
         super.onReplaced(oldState, worldIn, pos, newState, isMoving);
 
     }
-
+*/
 }

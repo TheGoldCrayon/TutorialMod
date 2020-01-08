@@ -6,7 +6,9 @@ import com.github.thegoldcrayon.tutorialmod.config.ConfigHelper;
 import com.github.thegoldcrayon.tutorialmod.config.ConfigHolder;
 import com.github.thegoldcrayon.tutorialmod.container.TutorialGeneratorContainer;
 import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
+import com.github.thegoldcrayon.tutorialmod.init.ModFoods;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
+import com.github.thegoldcrayon.tutorialmod.init.ModItems;
 import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
@@ -63,7 +65,8 @@ public class ModEventSubscriber
 
         registry.registerAll(
                 setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item"),
-                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "soul")
+                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "soul"),
+                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).food(ModFoods.EDIBLE_SOUL)), "edible_soul")
         );
 
         //Go through entire registry as to include any potential Registry Overrides
