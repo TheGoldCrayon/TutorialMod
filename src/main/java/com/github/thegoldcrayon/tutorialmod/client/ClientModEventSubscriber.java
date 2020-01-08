@@ -2,10 +2,14 @@ package com.github.thegoldcrayon.tutorialmod.client;
 
 import com.github.thegoldcrayon.tutorialmod.TutorialMod;
 import com.github.thegoldcrayon.tutorialmod.client.gui.TutorialGeneratorScreen;
+import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModContainerTypes;
+import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.entity.TippedArrowRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +29,7 @@ public class ClientModEventSubscriber
         LOGGER.debug("Registered TileEntity Renderers");
 
         //Register Entity Renderers
+        RenderingRegistry.registerEntityRenderingHandler(AppleArrowEntity.class, TippedArrowRenderer::new);
         LOGGER.debug("Registered Entity Renderers");
 
         //Register ContainerType Screens
