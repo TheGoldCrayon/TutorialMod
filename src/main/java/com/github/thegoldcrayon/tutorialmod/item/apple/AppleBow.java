@@ -1,7 +1,10 @@
 package com.github.thegoldcrayon.tutorialmod.item.apple;
 
+import com.github.thegoldcrayon.tutorialmod.TutorialMod;
 import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
+import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
+import com.github.thegoldcrayon.tutorialmod.init.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -13,16 +16,41 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
+import java.util.function.Predicate;
 
 public class AppleBow extends BowItem
 {
+
+    private static final Logger LOGGER = LogManager.getLogger(TutorialMod.MODID + "Apple Bow Testing");
+
+    public static final Predicate<ItemStack> APPLE_ARROW = (itemStack) -> {
+        return itemStack.getItem() == ModItems.APPLE_ARROW;
+    };
 
     public AppleBow(int durability)
     {
 
         super(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).maxStackSize(1).maxDamage(durability));
+
+    }
+
+    @Override
+    public Predicate<ItemStack> getInventoryAmmoPredicate()
+    {
+
+        return APPLE_ARROW;
+
+    }
+
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+    {
+
+        return repair.getItem() == Items.APPLE || super.getIsRepairable(toRepair, repair);
 
     }
 
@@ -34,14 +62,28 @@ public class AppleBow extends BowItem
         if(arrowEntity.getType() == EntityType.ARROW)
         {
 
-            arrowEntity = new AppleArrowEntity(arrowEntity.world, arrowEntity.world.getPlayerByUuid(arrowEntity.shootingEntity));
+            arrowEntity.setDamage(arrowEntity.getDamage() * 2);
+            arrowEntity.setKnockbackStrength(2);
+            LOGGER.debug("Case 1.");
+            return arrowEntity;
+
+        }
+        else if(arrowEntity.getType() == ModEntities.APPLE_ARROW)
+        {
+
             arrowEntity.setDamage(arrowEntity.getDamage() * 20);
-            arrowEntity.setKnockbackStrength(3);
+            arrowEntity.setKnockbackStrength(4);
+            LOGGER.debug("Case 2.");
             return arrowEntity;
 
         }
         else
+        {
+
+            LOGGER.debug("Case 3.");
             return super.customeArrow(arrowEntity);
+
+        }
 
     }
 

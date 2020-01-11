@@ -26,11 +26,11 @@ public class AppleArrow extends ArrowItem
     public AbstractArrowEntity createArrow(World worldIn, ItemStack stack, LivingEntity shooter)
     {
 
-        AppleArrowEntity arrowEntity = new AppleArrowEntity(worldIn, shooter);
-        arrowEntity.setPotionEffect(stack);
-        arrowEntity.setDamage(100.0d);
-        arrowEntity.setKnockbackStrength(2);
-        return arrowEntity;
+        AppleArrowEntity appleArrowEntity = new AppleArrowEntity(worldIn, shooter);
+        appleArrowEntity.setPotionEffect(stack);
+        appleArrowEntity.setDamage(100.0d);
+        appleArrowEntity.setKnockbackStrength(2);
+        return appleArrowEntity;
 
     }
 

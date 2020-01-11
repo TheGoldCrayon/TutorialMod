@@ -1,9 +1,11 @@
 package com.github.thegoldcrayon.tutorialmod.entity;
 
 import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
+import com.github.thegoldcrayon.tutorialmod.init.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -32,6 +34,14 @@ public class AppleArrowEntity extends ArrowEntity
     {
 
         super(world, livingEntity);
+
+    }
+
+    @Override
+    protected ItemStack getArrowStack()
+    {
+
+        return new ItemStack(ModItems.APPLE_ARROW);
 
     }
 

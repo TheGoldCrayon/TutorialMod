@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
