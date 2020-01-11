@@ -79,7 +79,8 @@ public class ModEventSubscriber
                         setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.CHEST).setArmorTexture("apple_layer_1"), "apple_chestplate"),
                         setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.LEGS).setArmorTexture("apple_layer_2"), "apple_leggings"),
                         setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.FEET).setArmorTexture("apple_layer_1"), "apple_boots"),
-                        setup(new AppleBow(), "apple_bow")
+                        setup(new AppleBow(2500), "apple_bow"),
+                        setup(new AppleArrow(), "apple_arrow")
 
                 );
 
@@ -98,7 +99,7 @@ public class ModEventSubscriber
 
             // If you have blocks that don't have a corresponding BlockItem, uncomment this code and create
             // an Interface - or even better an Annotation - called NoAutomaticBlockItem with no methods
-            // and implement it on your blocks that shouldn't have BlockItems autmatically made for them
+            // and implement it on your blocks that shouldn't have BlockItems automatically made for them
 //			if (block instanceof NoAutomaticBlockItem) {
 //				continue;
 //			}

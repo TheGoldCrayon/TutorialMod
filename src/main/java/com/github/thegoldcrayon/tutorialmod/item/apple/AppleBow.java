@@ -19,10 +19,10 @@ import javax.annotation.Nonnull;
 public class AppleBow extends BowItem
 {
 
-    public AppleBow()
+    public AppleBow(int durability)
     {
 
-        super(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).maxStackSize(1).maxDamage(3000));
+        super(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).maxStackSize(1).maxDamage(durability));
 
     }
 
@@ -32,9 +32,17 @@ public class AppleBow extends BowItem
     {
 
         if(arrowEntity.getType() == EntityType.ARROW)
-            return new AppleArrowEntity(arrowEntity.world, arrowEntity.world.getPlayerByUuid(arrowEntity.shootingEntity));
+        {
+
+            arrowEntity = new AppleArrowEntity(arrowEntity.world, arrowEntity.world.getPlayerByUuid(arrowEntity.shootingEntity));
+            arrowEntity.setDamage(arrowEntity.getDamage() * 20);
+            arrowEntity.setKnockbackStrength(3);
+            return arrowEntity;
+
+        }
         else
             return super.customeArrow(arrowEntity);
+
     }
 
     @Override
@@ -60,7 +68,7 @@ public class AppleBow extends BowItem
                         ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                         AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                         abstractarrowentity = customeArrow(abstractarrowentity);
-                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 30.0F, 0f);
+                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, 0f);
                         if (f == 1.0F) {
                             abstractarrowentity.setIsCritical(true);
                         }
