@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tutorialmod:apple_arrow",
+    "tutorialmod:speed_arrow",
+    "tutorialmod:damage_arrow",
+    "tutorialmod:explosion_arrow",
+    "tutorialmod:knockback_arrow"
+  ]
+}

@@ -5,6 +5,7 @@ import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import com.github.thegoldcrayon.tutorialmod.init.ModItems;
+import com.github.thegoldcrayon.tutorialmod.item.arrows.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -27,22 +28,15 @@ public class AppleBow extends BowItem
 
     private static final Logger LOGGER = LogManager.getLogger(TutorialMod.MODID + "Apple Bow Testing");
 
-    public static final Predicate<ItemStack> APPLE_ARROW = (itemStack) -> {
-        return itemStack.getItem() == ModItems.APPLE_ARROW;
-    };
+    private int knockbackModifier = 2;
+    private int damageModifier = 5;
+    private float velocityModifier = 1.5f;
+    private float arrowVelocityModifier = 1.0f;
 
     public AppleBow(int durability)
     {
 
         super(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).maxStackSize(1).maxDamage(durability));
-
-    }
-
-    @Override
-    public Predicate<ItemStack> getInventoryAmmoPredicate()
-    {
-
-        return APPLE_ARROW;
 
     }
 
@@ -59,28 +53,75 @@ public class AppleBow extends BowItem
     public AbstractArrowEntity customeArrow(@Nonnull AbstractArrowEntity arrowEntity)
     {
 
-        if(arrowEntity.getType() == EntityType.ARROW)
+        if(arrowEntity.getType() == ModEntities.APPLE_ARROW)
         {
 
-            arrowEntity.setDamage(arrowEntity.getDamage() * 2);
-            arrowEntity.setKnockbackStrength(2);
-            LOGGER.debug("Case 1.");
+            int knockback = AppleArrow.knockback * knockbackModifier;
+            double damage = AppleArrow.damage * damageModifier;
+            arrowVelocityModifier = AppleArrow.velocityModifier;
+            arrowEntity.setDamage(damage);
+            arrowEntity.setKnockbackStrength(knockback);
+            LOGGER.debug("Apple Arrow");
             return arrowEntity;
 
         }
-        else if(arrowEntity.getType() == ModEntities.APPLE_ARROW)
+        else if(arrowEntity.getType() == ModEntities.DAMAGE_ARROW)
         {
 
-            arrowEntity.setDamage(arrowEntity.getDamage() * 20);
-            arrowEntity.setKnockbackStrength(4);
-            LOGGER.debug("Case 2.");
+            int knockback = DamageArrow.knockback * knockbackModifier;
+            double damage = DamageArrow.damage * damageModifier;
+            arrowVelocityModifier = DamageArrow.velocityModifier;
+            arrowEntity.setDamage(damage);
+            arrowEntity.setKnockbackStrength(knockback);
+            LOGGER.debug("Damage Arrow");
+            return arrowEntity;
+
+        }
+        else if(arrowEntity.getType() == ModEntities.EXPLOSION_ARROW)
+        {
+
+            int knockback = ExplosionArrow.knockback * knockbackModifier;
+            double damage = ExplosionArrow.damage * damageModifier;
+            arrowVelocityModifier = ExplosionArrow.velocityModifier;
+            arrowEntity.setDamage(damage);
+            arrowEntity.setKnockbackStrength(knockback);
+            LOGGER.debug("Explosion Arrow");
+            return arrowEntity;
+
+        }
+        else if(arrowEntity.getType() == ModEntities.KNOCKBACK_ARROW)
+        {
+
+            int knockback = KnockbackArrow.knockback * knockbackModifier;
+            double damage = KnockbackArrow.damage * damageModifier;
+            arrowVelocityModifier = KnockbackArrow.velocityModifier;
+            arrowEntity.setDamage(damage);
+            arrowEntity.setKnockbackStrength(knockback);
+            LOGGER.debug("Knockback Arrow");
+            return arrowEntity;
+
+        }
+        else if(arrowEntity.getType() == ModEntities.SPEED_ARROW)
+        {
+
+            int knockback = SpeedArrow.knockback * knockbackModifier;
+            double damage = SpeedArrow.damage * damageModifier;
+            arrowVelocityModifier = SpeedArrow.velocityModifier;
+            arrowEntity.setDamage(damage);
+            arrowEntity.setKnockbackStrength(knockback);
+            LOGGER.debug("Speed Arrow");
+            return arrowEntity;
+
+        }
+        else if(arrowEntity.getType() == EntityType.ARROW)
+        {
+
             return arrowEntity;
 
         }
         else
         {
 
-            LOGGER.debug("Case 3.");
             return super.customeArrow(arrowEntity);
 
         }
@@ -110,7 +151,7 @@ public class AppleBow extends BowItem
                         ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                         AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                         abstractarrowentity = customeArrow(abstractarrowentity);
-                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, 0f);
+                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * arrowVelocityModifier * velocityModifier, 0f);
                         if (f == 1.0F) {
                             abstractarrowentity.setIsCritical(true);
                         }

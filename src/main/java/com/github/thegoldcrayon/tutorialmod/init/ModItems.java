@@ -1,6 +1,7 @@
 package com.github.thegoldcrayon.tutorialmod.init;
 
 import com.github.thegoldcrayon.tutorialmod.TutorialMod;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -13,5 +14,9 @@ public class ModItems
     public static final Item TUTORIAL_ITEM = null;
     public static final Item SOUL = null;
     public static final ArrowItem APPLE_ARROW = null;
+    public static final ArrowItem DAMAGE_ARROW = null;
+    public static final ArrowItem EXPLOSION_ARROW = null;
+    public static final ArrowItem KNOCKBACK_ARROW = null;
+    public static final ArrowItem SPEED_ARROW = null;
 
 }

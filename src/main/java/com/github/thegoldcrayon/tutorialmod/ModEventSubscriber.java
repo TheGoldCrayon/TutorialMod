@@ -7,16 +7,13 @@ import com.github.thegoldcrayon.tutorialmod.config.ConfigHolder;
 import com.github.thegoldcrayon.tutorialmod.container.TutorialGeneratorContainer;
 import com.github.thegoldcrayon.tutorialmod.init.*;
 import com.github.thegoldcrayon.tutorialmod.item.apple.*;
+import com.github.thegoldcrayon.tutorialmod.item.arrows.*;
 import com.github.thegoldcrayon.tutorialmod.tileentity.TutorialGeneratorTileEntity;
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
@@ -33,7 +30,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 @EventBusSubscriber(modid = TutorialMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEventSubscriber
@@ -81,7 +77,11 @@ public class ModEventSubscriber
                         setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.LEGS).setArmorTexture("apple_layer_2"), "apple_leggings"),
                         setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.FEET).setArmorTexture("apple_layer_1"), "apple_boots"),
                         setup(new AppleBow(2500), "apple_bow"),
-                        setup(new AppleArrow(), "apple_arrow")
+                        setup(new AppleArrow(), "apple_arrow"),
+                        setup(new DamageArrow(), "damage_arrow"),
+                        setup(new ExplosionArrow(), "explosion_arrow"),
+                        setup(new KnockbackArrow(), "knockback_arrow"),
+                        setup(new SpeedArrow(), "speed_arrow")
 
                 );
 
