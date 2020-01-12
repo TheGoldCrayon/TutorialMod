@@ -4,7 +4,6 @@ import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

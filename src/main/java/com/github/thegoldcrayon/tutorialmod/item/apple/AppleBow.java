@@ -28,10 +28,14 @@ public class AppleBow extends BowItem
 
     private static final Logger LOGGER = LogManager.getLogger(TutorialMod.MODID + "Apple Bow Testing");
 
+    private int knockback;
     private int knockbackModifier = 2;
+    private double damage;
     private int damageModifier = 5;
+    private float velocity;
     private float velocityModifier = 1.5f;
     private float arrowVelocityModifier = 1.0f;
+    private String arrowType;
 
     public AppleBow(int durability)
     {
@@ -56,60 +60,75 @@ public class AppleBow extends BowItem
         if(arrowEntity.getType() == ModEntities.APPLE_ARROW)
         {
 
-            int knockback = AppleArrow.knockback * knockbackModifier;
-            double damage = AppleArrow.damage * damageModifier;
+            knockback = AppleArrow.knockback * knockbackModifier;
+            damage = AppleArrow.damage * damageModifier;
+            arrowType = "Apple";
             arrowVelocityModifier = AppleArrow.velocityModifier;
             arrowEntity.setDamage(damage);
             arrowEntity.setKnockbackStrength(knockback);
             LOGGER.debug("Apple Arrow");
+            LOGGER.debug("Arrow damage: " + damage);
+            LOGGER.debug("Arrow knockback: " + knockback);
             return arrowEntity;
 
         }
         else if(arrowEntity.getType() == ModEntities.DAMAGE_ARROW)
         {
 
-            int knockback = DamageArrow.knockback * knockbackModifier;
-            double damage = DamageArrow.damage * damageModifier;
+            knockback = DamageArrow.knockback * knockbackModifier;
+            damage = DamageArrow.damage * damageModifier;
+            arrowType = "Damage";
             arrowVelocityModifier = DamageArrow.velocityModifier;
             arrowEntity.setDamage(damage);
             arrowEntity.setKnockbackStrength(knockback);
             LOGGER.debug("Damage Arrow");
+            LOGGER.debug("Arrow damage: " + damage);
+            LOGGER.debug("Arrow knockback: " + knockback);
             return arrowEntity;
 
         }
         else if(arrowEntity.getType() == ModEntities.EXPLOSION_ARROW)
         {
 
-            int knockback = ExplosionArrow.knockback * knockbackModifier;
-            double damage = ExplosionArrow.damage * damageModifier;
+            knockback = ExplosionArrow.knockback * knockbackModifier;
+            damage = ExplosionArrow.damage * damageModifier;
+            arrowType = "Explosion";
             arrowVelocityModifier = ExplosionArrow.velocityModifier;
             arrowEntity.setDamage(damage);
             arrowEntity.setKnockbackStrength(knockback);
             LOGGER.debug("Explosion Arrow");
+            LOGGER.debug("Arrow damage: " + damage);
+            LOGGER.debug("Arrow knockback: " + knockback);
             return arrowEntity;
 
         }
         else if(arrowEntity.getType() == ModEntities.KNOCKBACK_ARROW)
         {
 
-            int knockback = KnockbackArrow.knockback * knockbackModifier;
-            double damage = KnockbackArrow.damage * damageModifier;
+            knockback = KnockbackArrow.knockback * knockbackModifier;
+            damage = KnockbackArrow.damage * damageModifier;
+            arrowType = "Knockback";
             arrowVelocityModifier = KnockbackArrow.velocityModifier;
             arrowEntity.setDamage(damage);
             arrowEntity.setKnockbackStrength(knockback);
             LOGGER.debug("Knockback Arrow");
+            LOGGER.debug("Arrow damage: " + damage);
+            LOGGER.debug("Arrow knockback: " + knockback);
             return arrowEntity;
 
         }
         else if(arrowEntity.getType() == ModEntities.SPEED_ARROW)
         {
 
-            int knockback = SpeedArrow.knockback * knockbackModifier;
-            double damage = SpeedArrow.damage * damageModifier;
+            knockback = SpeedArrow.knockback * knockbackModifier;
+            damage = SpeedArrow.damage * damageModifier;
+            arrowType = "Speed";
             arrowVelocityModifier = SpeedArrow.velocityModifier;
             arrowEntity.setDamage(damage);
             arrowEntity.setKnockbackStrength(knockback);
             LOGGER.debug("Speed Arrow");
+            LOGGER.debug("Arrow damage: " + damage);
+            LOGGER.debug("Arrow knockback: " + knockback);
             return arrowEntity;
 
         }
@@ -151,7 +170,14 @@ public class AppleBow extends BowItem
                         ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
                         AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                         abstractarrowentity = customeArrow(abstractarrowentity);
-                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * arrowVelocityModifier * velocityModifier, 0f);
+
+                        velocity = f * arrowVelocityModifier * velocityModifier;
+                        LOGGER.debug("f: " + f);
+                        LOGGER.debug("Arrow velocity modifier: " + arrowVelocityModifier);
+                        LOGGER.debug("Velocity Modifier: " + velocityModifier);
+                        LOGGER.debug("Arrow velocity: " + velocity);
+
+                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, velocity, 0f);
                         if (f == 1.0F) {
                             abstractarrowentity.setIsCritical(true);
                         }

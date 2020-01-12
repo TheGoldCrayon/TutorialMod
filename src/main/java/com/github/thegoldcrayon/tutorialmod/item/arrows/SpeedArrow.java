@@ -1,6 +1,5 @@
 package com.github.thegoldcrayon.tutorialmod.item.arrows;
 
-import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.entity.SpeedArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import net.minecraft.entity.LivingEntity;
@@ -15,7 +14,7 @@ public class SpeedArrow extends ArrowItem
 
     public static double damage = 2.0d;
     public static int knockback = 0;
-    public static float velocityModifier = 1.5f;
+    public static float velocityModifier = 10.0f;
 
     public SpeedArrow()
     {

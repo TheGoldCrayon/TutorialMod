@@ -1,6 +1,5 @@
 package com.github.thegoldcrayon.tutorialmod.item.arrows;
 
-import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.entity.DamageArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import net.minecraft.entity.LivingEntity;

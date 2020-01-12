@@ -2,6 +2,7 @@ package com.github.thegoldcrayon.tutorialmod.client;
 
 import com.github.thegoldcrayon.tutorialmod.TutorialMod;
 import com.github.thegoldcrayon.tutorialmod.client.gui.TutorialGeneratorScreen;
+import com.github.thegoldcrayon.tutorialmod.client.render.entity.AppleArrowRenderer;
 import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModContainerTypes;
 import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
@@ -29,7 +30,7 @@ public class ClientModEventSubscriber
         LOGGER.debug("Registered TileEntity Renderers");
 
         //Register Entity Renderers
-        RenderingRegistry.registerEntityRenderingHandler(AppleArrowEntity.class, TippedArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(AppleArrowEntity.class, AppleArrowRenderer::new);
         LOGGER.debug("Registered Entity Renderers");
 
         //Register ContainerType Screens

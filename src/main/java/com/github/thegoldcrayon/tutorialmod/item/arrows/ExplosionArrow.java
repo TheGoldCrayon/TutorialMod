@@ -1,7 +1,5 @@
 package com.github.thegoldcrayon.tutorialmod.item.arrows;
 
-import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
-import com.github.thegoldcrayon.tutorialmod.entity.DamageArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.entity.ExplosionArrowEntity;
 import com.github.thegoldcrayon.tutorialmod.init.ModItemGroups;
 import net.minecraft.entity.LivingEntity;
@@ -17,6 +15,7 @@ public class ExplosionArrow extends ArrowItem
     public static double damage = 0.0d;
     public static int knockback = 0;
     public static float velocityModifier = 1.0f;
+    public static float explosionRadius = 2.0f;
 
     public ExplosionArrow()
     {
