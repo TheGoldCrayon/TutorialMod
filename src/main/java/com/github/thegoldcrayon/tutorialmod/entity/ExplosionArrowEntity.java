@@ -52,7 +52,7 @@ public class ExplosionArrowEntity extends ArrowEntity
     {
 
         super.arrowHit(living);
-        this.world.createExplosion(new ExplosionArrowEntity(world, living), living.posX, living.posY, living.posZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
+        this.world.createExplosion(new ExplosionArrowEntity(world, living), living.serverPosX, living.serverPosY, living.serverPosZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
 
     }
 
@@ -61,23 +61,23 @@ public class ExplosionArrowEntity extends ArrowEntity
         RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == RayTraceResult.Type.ENTITY)
         {
-            this.world.createExplosion(this, this.posX, this.posY, this.posZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
+            this.world.createExplosion(this, this.serverPosX, this.serverPosY, this.serverPosZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
         }
         else if (raytraceresult$type == RayTraceResult.Type.BLOCK)
         {
             BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceResultIn;
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getPos());
             this.inBlockState = blockstate;
-            Vec3d vec3d = blockraytraceresult.getHitVec().subtract(this.posX, this.posY, this.posZ);
+            Vec3d vec3d = blockraytraceresult.getHitVec().subtract(this.serverPosX, this.serverPosY, this.serverPosZ);
             this.setMotion(vec3d);
             Vec3d vec3d1 = vec3d.normalize().scale((double)0.05F);
-            this.posX -= vec3d1.x;
-            this.posY -= vec3d1.y;
-            this.posZ -= vec3d1.z;
+            this.serverPosX -= vec3d1.x;
+            this.serverPosY -= vec3d1.y;
+            this.serverPosZ -= vec3d1.z;
             this.playSound(this.getHitGroundSound(), 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
             this.inGround = false;
             blockstate.onProjectileCollision(this.world, blockstate, blockraytraceresult, this);
-            this.world.createExplosion(this, this.posX, this.posY, this.posZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
+            this.world.createExplosion(this, this.serverPosX, this.serverPosY, this.serverPosZ, ExplosionArrow.explosionRadius, true, Explosion.Mode.NONE);
         }
 
     }

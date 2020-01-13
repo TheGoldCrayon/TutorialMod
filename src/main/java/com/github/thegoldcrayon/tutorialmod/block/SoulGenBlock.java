@@ -67,7 +67,7 @@ public class SoulGenBlock extends Block
     public static Direction getFacingFromEntity(BlockPos clickedBlock, LivingEntity entity)
     {
 
-        return Direction.getFacingFromVector((float) (entity.posX - clickedBlock.getX()), (float) (entity.posY - clickedBlock.getY()), (float) (entity.posZ - clickedBlock.getZ()));
+        return Direction.getFacingFromVector((float) (entity.serverPosX - clickedBlock.getX()), (float) (entity.serverPosY - clickedBlock.getY()), (float) (entity.serverPosZ - clickedBlock.getZ()));
 
     }
 
@@ -79,7 +79,7 @@ public class SoulGenBlock extends Block
 
     }
 
-    @Override
+    //@Override
     public boolean onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit)
     {
 

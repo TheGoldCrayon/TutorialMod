@@ -60,7 +60,7 @@ public class AppleArrowEntity extends ArrowEntity
         {
             if (timeSinceShot < 30)
                 timeSinceShot++;
-            else if (timeSinceShot >= 30 && !this.inGround) {
+            else if (timeSinceShot == 30 && !this.inGround) {
                 double xVector = this.getMotion().getX();
                 double yVector = this.getMotion().getY();
                 double zVector = this.getMotion().getZ();
@@ -73,9 +73,9 @@ public class AppleArrowEntity extends ArrowEntity
                 //PlayerEntity
                 //LOGGER.debug(shooter);
 
-                double shooterX = shooter.posX;
-                double shooterY = shooter.posY;
-                double shooterZ = shooter.posZ;
+                double shooterX = shooter.func_226277_ct_(); //.getX()
+                double shooterY = shooter.func_226278_cu_(); //.getY()
+                double shooterZ = shooter.func_226281_cx_(); //.getZ()
                 float pitch = shooter.getPitch(20.0f);
                 float yaw = shooter.getYaw(20.0f);
                 //LOGGER.debug("Pitch: " + pitch);
@@ -88,7 +88,7 @@ public class AppleArrowEntity extends ArrowEntity
                 //this.shoot(shooterLookX,shooterLookY,shooterLookZ,1.0f, 0.0f);
                 this.shoot(shooterX - arrowX, shooterY - arrowY, shooterZ - arrowZ, 1.0f, 0.0f);
                 //this.shoot(xVector, yVector * (-1), zVector, 1.0f, 0.0f);
-                //timeSinceShot++;
+                timeSinceShot++;
             }
             super.tick();
         }

@@ -36,7 +36,7 @@ public class TutorialGeneratorScreen extends ContainerScreen<TutorialGeneratorCo
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
 
-        GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        //GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
         int startX = this.guiLeft;
         int startY = this.guiTop;

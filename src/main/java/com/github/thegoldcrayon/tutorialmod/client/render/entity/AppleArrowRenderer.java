@@ -19,7 +19,7 @@ public class AppleArrowRenderer extends ArrowRenderer<AppleArrowEntity>
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(AppleArrowEntity entity)
+    public ResourceLocation getEntityTexture(AppleArrowEntity entity)
     {
         return new ResourceLocation("tutorialmod:textures/entity/apple_arrow.png");
     }

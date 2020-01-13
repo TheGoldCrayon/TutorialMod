@@ -30,7 +30,7 @@ public class ClientModEventSubscriber
         LOGGER.debug("Registered TileEntity Renderers");
 
         //Register Entity Renderers
-        RenderingRegistry.registerEntityRenderingHandler(AppleArrowEntity.class, AppleArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.APPLE_ARROW, AppleArrowRenderer::new);
         LOGGER.debug("Registered Entity Renderers");
 
         //Register ContainerType Screens
