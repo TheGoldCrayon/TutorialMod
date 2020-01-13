@@ -6,6 +6,7 @@ import com.github.thegoldcrayon.tutorialmod.init.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
@@ -59,7 +60,7 @@ public class AppleArrowEntity extends ArrowEntity
         {
             if (timeSinceShot < 30)
                 timeSinceShot++;
-            else if (timeSinceShot == 30 && !this.inGround) {
+            else if (timeSinceShot >= 30 && !this.inGround) {
                 double xVector = this.getMotion().getX();
                 double yVector = this.getMotion().getY();
                 double zVector = this.getMotion().getZ();
@@ -69,14 +70,25 @@ public class AppleArrowEntity extends ArrowEntity
                 double arrowZ = this.getPosition().getZ();
 
                 Entity shooter = this.getShooter();
-                LOGGER.debug(shooter);
+                //PlayerEntity
+                //LOGGER.debug(shooter);
 
                 double shooterX = shooter.posX;
                 double shooterY = shooter.posY;
                 double shooterZ = shooter.posZ;
+                float pitch = shooter.getPitch(20.0f);
+                float yaw = shooter.getYaw(20.0f);
+                //LOGGER.debug("Pitch: " + pitch);
+                //LOGGER.debug("Yaw: " + yaw);
+                double shooterLookX = shooter.getLook(20.0f).getX() * 2;
+                double shooterLookY = shooter.getLook(20.0f).getY() * 2;
+                double shooterLookZ = shooter.getLook(20.0f).getZ() * 2;
+                //LOGGER.debug("X: " + shooterLookX + ", Y: " + shooterLookY + ", Z: " + shooterLookZ);
+
+                //this.shoot(shooterLookX,shooterLookY,shooterLookZ,1.0f, 0.0f);
                 this.shoot(shooterX - arrowX, shooterY - arrowY, shooterZ - arrowZ, 1.0f, 0.0f);
                 //this.shoot(xVector, yVector * (-1), zVector, 1.0f, 0.0f);
-                timeSinceShot = 40;
+                //timeSinceShot++;
             }
             super.tick();
         }
