@@ -19,6 +19,7 @@ public class RopeBlock extends LadderBlock
                 .create(Material.WOOL)
                 .sound(SoundType.CLOTH)
                 .hardnessAndResistance(0.5f)
+                .func_226896_b_()
         );
     }
 
