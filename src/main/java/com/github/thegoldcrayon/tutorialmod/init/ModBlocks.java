@@ -10,5 +10,6 @@ public class ModBlocks
 
     public static final Block TUTORIAL_GENERATOR = null;
     public static final Block SOUL_GEN = null;
+    public static final Block ROPE = null;
 
 }

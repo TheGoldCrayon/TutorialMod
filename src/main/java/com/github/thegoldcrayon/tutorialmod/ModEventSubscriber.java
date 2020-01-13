@@ -1,5 +1,6 @@
 package com.github.thegoldcrayon.tutorialmod;
 
+import com.github.thegoldcrayon.tutorialmod.block.RopeBlock;
 import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
 import com.github.thegoldcrayon.tutorialmod.block.TutorialGeneratorBlock;
 import com.github.thegoldcrayon.tutorialmod.config.ConfigHelper;
@@ -48,7 +49,8 @@ public class ModEventSubscriber
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue"),
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_2"),
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_3"),
-                setup(new TutorialGeneratorBlock(), "tutorial_generator")
+                setup(new TutorialGeneratorBlock(), "tutorial_generator"),
+                setup(new RopeBlock(), "rope")
         );
 
         LOGGER.debug("Registered Blocks");
@@ -64,26 +66,25 @@ public class ModEventSubscriber
         final IForgeRegistry<Item> registry = event.getRegistry();
 
         registry.registerAll(
-                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item"),
-                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "soul"),
-                        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).food(ModFoods.EDIBLE_SOUL)), "edible_soul"),
-                        setup(new ApplePickaxe(new ModMaterials().APPLE, 2, 2.0f), "apple_pickaxe"),
-                        setup(new AppleAxe(new ModMaterials().APPLE, 2, 2.0f), "apple_axe"),
-                        setup(new AppleHoe(new ModMaterials().APPLE, 1.0f), "apple_hoe"),
-                        setup(new AppleShovel(new ModMaterials().APPLE, 2, 2.0f), "apple_shovel"),
-                        setup(new AppleSword(new ModMaterials().APPLE, 10, 3.0f), "apple_sword"),
-                        setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.HEAD).setArmorTexture("apple_layer_1"), "apple_helmet"),
-                        setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.CHEST).setArmorTexture("apple_layer_1"), "apple_chestplate"),
-                        setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.LEGS).setArmorTexture("apple_layer_2"), "apple_leggings"),
-                        setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.FEET).setArmorTexture("apple_layer_1"), "apple_boots"),
-                        setup(new AppleBow(2500), "apple_bow"),
-                        setup(new AppleArrow(), "apple_arrow"),
-                        setup(new DamageArrow(), "damage_arrow"),
-                        setup(new ExplosionArrow(), "explosion_arrow"),
-                        setup(new KnockbackArrow(), "knockback_arrow"),
-                        setup(new SpeedArrow(), "speed_arrow")
-
-                );
+        setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "tutorial_item"),
+                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "soul"),
+                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP).food(ModFoods.EDIBLE_SOUL)), "edible_soul"),
+                setup(new ApplePickaxe(new ModMaterials().APPLE, 2, 2.0f), "apple_pickaxe"),
+                setup(new AppleAxe(new ModMaterials().APPLE, 2, 2.0f), "apple_axe"),
+                setup(new AppleHoe(new ModMaterials().APPLE, 1.0f), "apple_hoe"),
+                setup(new AppleShovel(new ModMaterials().APPLE, 2, 2.0f), "apple_shovel"),
+                setup(new AppleSword(new ModMaterials().APPLE, 10, 3.0f), "apple_sword"),
+                setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.HEAD).setArmorTexture("apple_layer_1"), "apple_helmet"),
+                setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.CHEST).setArmorTexture("apple_layer_1"), "apple_chestplate"),
+                setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.LEGS).setArmorTexture("apple_layer_2"), "apple_leggings"),
+                setup(new AppleArmor(new ModMaterials().APPLE_ARMOR, EquipmentSlotType.FEET).setArmorTexture("apple_layer_1"), "apple_boots"),
+                setup(new AppleBow(2500), "apple_bow"),
+                setup(new AppleArrow(), "apple_arrow"),
+                setup(new DamageArrow(), "damage_arrow"),
+                setup(new ExplosionArrow(), "explosion_arrow"),
+                setup(new KnockbackArrow(), "knockback_arrow"),
+                setup(new SpeedArrow(), "speed_arrow")
+        );
 
         //Go through entire registry as to include any potential Registry Overrides
         for(final Block block : ForgeRegistries.BLOCKS.getValues())

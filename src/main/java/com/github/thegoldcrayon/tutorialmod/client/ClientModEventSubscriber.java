@@ -31,6 +31,10 @@ public class ClientModEventSubscriber
 
         //Register Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.APPLE_ARROW, AppleArrowRenderer::new);
+        //RenderingRegistry.registerEntityRenderingHandler(ModEntities.DAMAGE_ARROW, AppleArrowRenderer::new);
+        //RenderingRegistry.registerEntityRenderingHandler(ModEntities.EXPLOSION_ARROW, AppleArrowRenderer::new);
+        //RenderingRegistry.registerEntityRenderingHandler(ModEntities.KNOCKBACK_ARROW, AppleArrowRenderer::new);
+        //RenderingRegistry.registerEntityRenderingHandler(ModEntities.SPEED_ARROW, AppleArrowRenderer::new);
         LOGGER.debug("Registered Entity Renderers");
 
         //Register ContainerType Screens

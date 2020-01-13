@@ -86,7 +86,7 @@ public class ExplosionArrowEntity extends ArrowEntity
     protected ItemStack getArrowStack()
     {
 
-        return new ItemStack(ModItems.APPLE_ARROW);
+        return new ItemStack(ModItems.EXPLOSION_ARROW);
 
     }
 
