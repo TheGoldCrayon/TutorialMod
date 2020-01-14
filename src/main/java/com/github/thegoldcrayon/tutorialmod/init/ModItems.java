@@ -18,5 +18,8 @@ public class ModItems
     public static final ArrowItem EXPLOSION_ARROW = null;
     public static final ArrowItem KNOCKBACK_ARROW = null;
     public static final ArrowItem SPEED_ARROW = null;
+    public static final Item FLAX_SEEDS = null;
+    public static final Item DRY_FLAX = null;
+    public static final Item FRESH_FLAX = null;
 
 }

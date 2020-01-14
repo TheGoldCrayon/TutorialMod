@@ -1,5 +1,6 @@
 package com.github.thegoldcrayon.tutorialmod;
 
+import com.github.thegoldcrayon.tutorialmod.block.FlaxCropBlock;
 import com.github.thegoldcrayon.tutorialmod.block.RopeBlock;
 import com.github.thegoldcrayon.tutorialmod.block.StatueBaseBlock;
 import com.github.thegoldcrayon.tutorialmod.block.TutorialGeneratorBlock;
@@ -16,6 +17,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -50,7 +52,8 @@ public class ModEventSubscriber
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_2"),
                 setup(new StatueBaseBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(20.0f, 20.0f)), "creator_statue_3"),
                 setup(new TutorialGeneratorBlock(), "tutorial_generator"),
-                setup(new RopeBlock(), "rope")
+                setup(new RopeBlock(), "rope"),
+                setup(new FlaxCropBlock(), "flax_crop")
         );
 
         LOGGER.debug("Registered Blocks");
@@ -83,7 +86,10 @@ public class ModEventSubscriber
                 setup(new DamageArrow(), "damage_arrow"),
                 setup(new ExplosionArrow(), "explosion_arrow"),
                 setup(new KnockbackArrow(), "knockback_arrow"),
-                setup(new SpeedArrow(), "speed_arrow")
+                setup(new SpeedArrow(), "speed_arrow"),
+                setup(new BlockNamedItem(ModBlocks.FLAX_CROP, new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "flax_seeds"),
+                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "fresh_flax"),
+                setup(new Item(new Item.Properties().group(ModItemGroups.MOD_ITEM_GROUP)), "dry_flax")
         );
 
         //Go through entire registry as to include any potential Registry Overrides

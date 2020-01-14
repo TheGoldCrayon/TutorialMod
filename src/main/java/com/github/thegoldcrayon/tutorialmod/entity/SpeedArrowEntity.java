@@ -41,7 +41,7 @@ public class SpeedArrowEntity extends ArrowEntity
     protected ItemStack getArrowStack()
     {
 
-        return new ItemStack(ModItems.APPLE_ARROW);
+        return new ItemStack(ModItems.SPEED_ARROW);
 
     }
 
