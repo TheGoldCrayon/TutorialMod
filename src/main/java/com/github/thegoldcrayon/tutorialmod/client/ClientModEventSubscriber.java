@@ -4,9 +4,12 @@ import com.github.thegoldcrayon.tutorialmod.TutorialMod;
 import com.github.thegoldcrayon.tutorialmod.client.gui.TutorialGeneratorScreen;
 import com.github.thegoldcrayon.tutorialmod.client.render.entity.AppleArrowRenderer;
 import com.github.thegoldcrayon.tutorialmod.entity.AppleArrowEntity;
+import com.github.thegoldcrayon.tutorialmod.init.ModBlocks;
 import com.github.thegoldcrayon.tutorialmod.init.ModContainerTypes;
 import com.github.thegoldcrayon.tutorialmod.init.ModEntities;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.entity.TippedArrowRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,6 +28,10 @@ public class ClientModEventSubscriber
     @SubscribeEvent
     public static void onFMLClientSetupEvent(final FMLClientSetupEvent event)
     {
+        //Misc. Renders
+        RenderType renderType1 = RenderType.func_228643_e_();
+        RenderTypeLookup.setRenderLayer(ModBlocks.ROPE, renderType1);
+        LOGGER.debug("Completed Misc. Renders");
 
         //Register TileEntity Renderers
         LOGGER.debug("Registered TileEntity Renderers");
